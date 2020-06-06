@@ -27,6 +27,7 @@ deriving instance (Show z, Show r, Show (Z c), Show (R c)) => (Show (Linear z r 
 -- | Find the result type of merging, or adding, two linear functions:
 -- adding two integers produces an integer, while adding a real on either side produces a real.
 type family KMerge (a :: K) (b :: K) :: K where
+ KMerge a a = a
  KMerge 'KZ 'KZ = 'KZ
  KMerge 'KR  b  = 'KR
  KMerge  a  'KR = 'KR
@@ -35,6 +36,3 @@ type family KMerge (a :: K) (b :: K) :: K where
 type family KRep (a :: K) :: * -> * where
  KRep 'KZ = Z
  KRep 'KR = R
-
-
-
