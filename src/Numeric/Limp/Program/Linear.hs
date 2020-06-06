@@ -14,9 +14,10 @@ module Numeric.Limp.Program.Linear
     , con, conZ, conR
     , c0, c1
 
-    , neg
+    , neg, sumOf
     , (.*), (*.)
-    , (.+.), (.-.) )
+    , (.+.), (.-.)
+    )
      where
 import Numeric.Limp.Rep
 import Numeric.Limp.Program.ResultKind
@@ -124,6 +125,8 @@ neg (LR ls c)
 (.-.) a b
  = a .+. neg b
 
+sumOf :: forall k z r c. Rep c => [Linear z r c k] -> Linear z r c k -- TODO: result should be (KMerge k k) or simply k
+sumOf = foldr1 (.+.)
 
 infix  7 *.
 infix  7 .*
