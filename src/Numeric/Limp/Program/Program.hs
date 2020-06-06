@@ -38,12 +38,13 @@ program :: Rep c => Direction -> Linear z r c k -> Constraint z r c -> [Bounds z
 program dir obj constr bounds
  = Program dir (toR obj) constr bounds
 
-minimise :: Rep c => Linear z r c k -> Constraint z r c -> [Bounds z r c] -> Program z r c
+minimise, minimize :: Rep c => Linear z r c k -> Constraint z r c -> [Bounds z r c] -> Program z r c
 minimise
  = program Minimise
- 
+minimize = minimise
 
-maximise :: Rep c => Linear z r c k -> Constraint z r c -> [Bounds z r c] -> Program z r c
+
+maximise, maximize :: Rep c => Linear z r c k -> Constraint z r c -> [Bounds z r c] -> Program z r c
 maximise
  = program Maximise
-
+maximize = maximise
