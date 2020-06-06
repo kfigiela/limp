@@ -8,7 +8,7 @@ module Numeric.Limp.Program.Linear
     ( Linear(..)
     , toR
 
-    , z, z1
+    , z, z1, zr
     , r, r1
 
     , con, conZ, conR
@@ -38,6 +38,10 @@ z z' c
 z1 :: Rep c => z -> Linear z r c 'KZ
 z1 z'
  = z z' 1
+
+zr :: Rep c => z -> R c -> Linear z r c 'KR
+zr z' c
+ = LR [(Left z', c)] 0
 
 -- | Real variable
 r :: Rep c => r -> R c -> Linear z r c 'KR
