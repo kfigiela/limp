@@ -130,3 +130,12 @@ infix  7 .*
 infixl 6 .+.
 infixl 6 .-.
 
+instance Rep c => Monoid (Linear z r c 'KZ) where
+    mempty = c0
+instance Rep c => Semigroup (Linear z r c 'KZ) where
+    (<>) = (.+.)
+
+instance Rep c => Monoid (Linear z r c 'KR) where
+    mempty = conR 0.0
+instance Rep c => Semigroup (Linear z r c 'KR) where
+    (<>) = (.+.)
