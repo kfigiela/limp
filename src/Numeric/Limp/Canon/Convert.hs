@@ -46,12 +46,12 @@ constraint z
   -- -(d-c)<= y - x
   --
   cle l r
-   = let (lin, co) = linear (r P..-. l)
-     in  C1 (Just (-co)) lin Nothing
+   = let (lin, co) = linear (l P..-. r)
+     in  C1 Nothing lin (Just (-co))
 
   -- a == b <==> a - b == 0
   ceq l r
-   = let (lin, co) = linear (r P..-. l)
+   = let (lin, co) = linear (l P..-. r)
      in  C1 (Just (-co)) lin (Just (-co))
 
   go (l P.:== r)
@@ -118,5 +118,3 @@ program p
    = (Left k, (fromZ <$> l, fromZ <$> u))
   extract (P.BoundR (l,k,u))
    = (Right k, (l,u))
-
-
